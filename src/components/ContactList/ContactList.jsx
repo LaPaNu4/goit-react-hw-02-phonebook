@@ -1,31 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
-class ContactList extends React.Component {
-  handleDeleteContact = id => {
-    this.props.deleteContact(id);
+const ContactList = ({ contacts, deleteContact }) => {
+  const handleDeleteContact = id => {
+    deleteContact(id);
   };
-  render() {
-    const { contacts } = this.props;
 
-    return (
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>
-            {contact.name}: {contact.number}
-            <button
-              type="button"
-              onClick={() => this.handleDeleteContact(contact.id)}
-              style={{ marginLeft: '10px' }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+  return (
+    <ul>
+      {contacts.map(contact => (
+        <li key={contact.id}>
+          {contact.name}: {contact.number}
+          <button
+            type="button"
+            onClick={() => handleDeleteContact(contact.id)}
+            style={{ marginLeft: '10px' }}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export default ContactList;
 

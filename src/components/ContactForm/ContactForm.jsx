@@ -33,8 +33,10 @@ class ContactForm extends React.Component {
           <input
             type="text"
             name="name"
+            pattern="[a-zA-Zа-яА-Я]{2,30}"
             value={name}
             onChange={this.handleChange}
+            required
           />
         </label>
         <label>
@@ -43,7 +45,9 @@ class ContactForm extends React.Component {
             type="text"
             name="number"
             value={number}
+            pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             onChange={this.handleChange}
+            required
           />
         </label>
         <button type="submit">Add contact</button>

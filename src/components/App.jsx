@@ -17,16 +17,13 @@ class App extends React.Component {
   };
 
   addContact = (name, number) => {
-    if (typeof name !== 'string' || name.trim() === "") {
-      alert('Please enter a name');
-      return
-      }
     const isDuplicate = this.state.contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isDuplicate) {
       alert('This contact already exists in the phone book!');
-    } else {
+      return;
+    } 
       const newContact = {
         id: nanoid(),
         name,
@@ -36,7 +33,7 @@ class App extends React.Component {
       this.setState(prevState => ({
         contacts: [...prevState.contacts, newContact],
       }));
-    }
+    
   };
   deleteContact = (id) => {
     console.log('deleteContact')
@@ -79,61 +76,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
-
-// import React from 'react';
-// import { nanoid } from 'nanoid';
-// import ContactForm from './ContactForm';
-// import ContactList from './ContactList';
-// import Filter from './Filter';
-
-// class App extends React.Component {
-//   state = {
-//     contacts: [],
-//     filter: '',
-//   };
-
-//   addContact = (name, number) => {
-//     const newContact = {
-//       id: nanoid(),
-//       name,
-//       number,
-//     };
-//     this.setState(prevState => ({
-//       contacts: [...prevState.contacts, newContact],
-//     }));
-//   };
-
-//   handleFilterChange = event => {
-//     this.setState({
-//       filter: event.target.value,
-//     });
-//   };
-
-//   getFilteredContacts = () => {
-//     const { contacts, filter } = this.state;
-//     return contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(filter.toLowerCase())
-//     );
-//   };
-
-//   render() {
-//     const { filter } = this.state;
-//     const filteredContacts = this.getFilteredContacts();
-
-//     return (
-//       <div>
-//         <h1>Phonebook</h1>
-//         <ContactForm addContact={this.addContact} />
-
-//         <h2>Contacts</h2>
-//         <Filter filter={filter} onChange={this.handleFilterChange} />
-//         <ContactList contacts={filteredContacts} />
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
